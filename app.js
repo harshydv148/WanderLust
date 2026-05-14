@@ -36,7 +36,7 @@ async function main() {
   await mongoose.connect(dbUrl);
 }
 
-app.set("view engine ", "ejs"); //to use ejs
+app.set("view engine ","ejs"); //to use ejs
 app.set("views", path.join(__dirname, "views")); //to tell ejs path that every file is in views folder
 app.use(express.urlencoded({ extended: true })); //to parse the data
 app.use(methodOverride("_method")); //to use method override
@@ -51,10 +51,12 @@ const store = MongoStore.create({
   touchAfter:24 * 3600,
 })
 
-store.on("error", ()=>{
-  console.log("ERROR in MONGO SESSION STORE",err);
-})
+store.on("error", (err) => {
+  console.log("ERROR in MONGO SESSION STORE", err);
+});
+
 const sessionOptions = {
+  store,
   secret : process.env.SECRET,
   resave : false,
   saveUninitialized :true,
