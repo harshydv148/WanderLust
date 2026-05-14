@@ -1,6 +1,7 @@
 if(process.env.NODE_ENV !="production"){
   require("dotenv").config();
 }
+//mongodb+srv://harsh:uVZaQhtS08HMNEGb@cluster0.o5gtesa.mongodb.net/?appName=Cluster0
 
 const express = require("express");
 const app = express();
@@ -109,6 +110,13 @@ app.use((err, req, res, next) => {
   res.status(statusCode).render("error.ejs", { message });
   // res.status(statusCode).send(message);
 });
+
+// app.use((err, req, res, next) => {
+//   let { statusCode = 500, message = "Something went wrong" } = err;
+// console.log(err)
+//   res.status(statusCode).render("error.ejs", { message: err });
+//   // res.status(statusCode).send(message);
+// });
 
 app.listen(8080, () => {
   console.log("server is listening to port 8080");
