@@ -44,12 +44,9 @@ app.engine("ejs", ejsmate); //to use ejs mate
 app.use(express.static(path.join(__dirname, "/public"))); //to use css and other file and tell compiler that files are in pblic folder
 
 const store = MongoStore.create({
-  mongoUrl:dbUrl,
-  crypto:{
-    secret:process.env.SECRET,
-  },
-  touchAfter:24 * 3600,
-})
+  mongoUrl: dbUrl,
+  touchAfter: 24 * 3600,
+});
 
 store.on("error", (err) => {
   console.log("ERROR in MONGO SESSION STORE", err);
